@@ -17,11 +17,11 @@ def exchage_get(date_req):  # принимает даты, и выдает ре�
 
 
 def get_format_date():
-    today_date = datetime.date.today()
+    today_date = (datetime.date.today() + datetime.timedelta(days=1))
     year = (str(today_date).strip().split("-"))[0]
     month = (str(today_date).strip().split("-"))[1]
     day = (str(today_date).strip().split("-"))[2]
-    date_req = f"{int(day)}/{int(month)}/{int(year)}" # преобразует дату в формат 20/10/2022 # noqa
+    date_req = f"{day}/{month}/{year}" # преобразует дату в формат 20/10/2022 # noqa
     return date_req
 
 
