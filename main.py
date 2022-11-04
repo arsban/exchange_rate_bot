@@ -2,6 +2,7 @@ import requests
 import xmltodict
 import datetime
 import json
+import telegram_send
 
 
 def exchage_get(date_req):  # принимает даты, и выдает результат по этой дате
@@ -36,10 +37,13 @@ if __name__ == "__main__":
         dollar_value = templates["ValCurs"]["Valute"][10]["Value"]  # курс валюты  # noqa
         euro_name = templates["ValCurs"]["Valute"][11]["Name"]  # название валюты # noqa
         euro_value = templates["ValCurs"]["Valute"][11]["Value"]  # курс валюты  # noqa
-        print(
+        telegram_send.send(messages=[
             f"ЦБ РФ обновил официальные курсы валют.\n"
             f"Курс на {date}\n"
             f"{dollar_name} - {dollar_value}\n"
-            f"{euro_name} - {euro_value}\n",
-            end=""
-        )
+            f"{euro_name} - {euro_value}\n"
+        ])
+# команды в консоли для настройки telegram-send:
+# telegram-send --configure | для отправки сообщений в бота
+# telegram-send --configure-group | для отправки сообщений в группу
+# telegram-send --configure-channel | для отправки сообщений в канал
